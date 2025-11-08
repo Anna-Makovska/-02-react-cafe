@@ -1,9 +1,13 @@
 import css from "./VoteOptions.module.css"
-import type { VoteOptionsProps } from "../../types/votes";
+import type { Votes } from '../../types/votes';
 
+interface VoteOptionsProps {
+    onVote: (votes: keyof Votes) => void;
+    onReset: () => void;
+    canReset?: boolean;
+}
 
 const VoteOptions = ({onVote, onReset, canReset = false} : VoteOptionsProps) => {
-
 
 
     return (

@@ -1,5 +1,10 @@
 import styles from './VoteStats.module.css';
-import type { VoteStatsProps } from '../../types/votes';
+import type { Votes } from '../../types/votes';
+interface VoteStatsProps {
+    votes: Votes;
+    totalVotes: number;
+    positiveRate: number;
+}
 
 export const VoteStats = ({votes, totalVotes, positiveRate} : VoteStatsProps) => {
     return (

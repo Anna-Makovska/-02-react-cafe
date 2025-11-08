@@ -3,7 +3,7 @@ import CafeInfo from '../CafeInfo/CafeInfo';
 import { Notification } from "../Notification/Notification";
 import VoteOptions from "../VoteOptions/VoteOptions";
 import { VoteStats } from "../VoteStats/VoteStats";
-import type { Votes } from "../../types/votes";
+import type { Votes, VoteType} from "../../types/votes";
 import { useState } from "react";
 
 function App() {
@@ -13,10 +13,10 @@ function App() {
         bad: 0
     });
 
-    const handleVote = (option: keyof Votes) => {
+    const handleVote = (type: VoteType) => {
         setVotes(votes => ({
             ...votes,
-            [option]: votes[option] + 1
+            [type]: votes[type] + 1
         }));
     };
 
@@ -35,8 +35,8 @@ function App() {
         <div className={css.app}>
             <CafeInfo />
             <VoteOptions onVote={handleVote} onReset={resetVotes} canReset={totalVotes > 0} />
-            <VoteStats votes={votes} totalVotes={totalVotes} positiveRate={positiveRate} />
-            {totalVotes === 0 && <Notification/>}
+            {totalVotes === 0 && <Notification/>}           
+            {totalVotes > 0 && <VoteStats votes={votes} totalVotes={totalVotes} positiveRate={positiveRate} /> } 
         </div>
     );
 }
